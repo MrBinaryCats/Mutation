@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Mutations.GenericComponents
 {
     /// <summary>
     /// Component which rotates gameobject

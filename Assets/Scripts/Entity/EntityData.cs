@@ -1,7 +1,9 @@
 using System;
+using DefaultNamespace;
+using Mutations.Mutations.Core;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Mutations.Entity
 {
     [CreateAssetMenu(fileName = "FILENAME", menuName = "Entity", order = 0)]
     public class EntityData : ScriptableObject

@@ -1,8 +1,6 @@
-using System;
-using UnityEditor;
-using UnityEngine;
+using DefaultNamespace;
 
-namespace DefaultNamespace
+namespace Mutations.Mutations.Core
 {
     /// <summary>
     /// Standard mutation type.

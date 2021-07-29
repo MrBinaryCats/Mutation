@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace DefaultNamespace
+namespace Mutations.Mutations.Core
 {
     /// <summary>
     /// Mutation which can have multiple possible states.

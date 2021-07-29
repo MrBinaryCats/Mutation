@@ -1,6 +1,8 @@
+using DefaultNamespace;
+using Mutations.Mutations.Core;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Mutations.Mutations
 {
     /// <summary>
     /// Mutation which applies a scale to the gameobject

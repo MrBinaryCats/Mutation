@@ -1,10 +1,11 @@
 using System;
 using DefaultNamespace;
+using Mutations.Mutations;
+using Mutations.Mutations.Core;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Editor
+namespace Mutations.Editor
 {
     //Define custom editor for any Mutations which match the inheritance Mutations<Color, MeshRenderer>
     [CustomEditor(typeof(Mutations<Color, MeshRenderer>), true)]

@@ -2,11 +2,12 @@ using System;
 using System.Linq;
 using System.Reflection;
 using DefaultNamespace;
+using Mutations.Entity;
+using Mutations.Mutations.Core;
 using UnityEditor;
 using UnityEngine;
 
-
-namespace Editor
+namespace Mutations.Editor
 {
     [CustomEditor(typeof(EntityData))]
     public class EntityEditor : UnityEditor.Editor

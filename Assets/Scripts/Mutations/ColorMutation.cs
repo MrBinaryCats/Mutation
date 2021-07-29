@@ -1,8 +1,8 @@
-using System;
-using System.Threading;
+using DefaultNamespace;
+using Mutations.Mutations.Core;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Mutations.Mutations
 {
     /// <summary>
     /// Color mutation, applies a given colour onto the meshrenders material
