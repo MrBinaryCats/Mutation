@@ -1,5 +1,5 @@
 # Mutation
-Mutation system for Unity which allows you to adapt your objects via data. The project provides an `Entity` data type which implements the Mutation system. Each `Entity` can different mutations. Provided Mutations include:
+Mutation system for Unity which allows you to adapt your objects via data. The project provides an `Entity` data type which implements the Mutation system. Each `Entity` can have different mutations. Provided Mutations include:
 - Rotate Mutation
 - Color Mutation
 - Scale Mutation
