@@ -10,11 +10,19 @@ namespace Mutations.Editor
     //Define custom editor for any Mutations which match the inheritance Mutations<Color, MeshRenderer>
     [CustomEditor(typeof(Mutations<Color, MeshRenderer>), true)]
     //Ensure to inherit from MutationsEditor which does all the heavy lifting 
-    public class ColorEditor : MutationsEditor { };
+    public class ColorEditor : MutationsEditor
+    { 
+        protected override string[] ExcludedProperties => new []
+        {
+            "m_Script" , "DefaultValue", "DefaultIndex", "Values",
+            "ColorPropName", "ColorPropID"
+        };
+    };
     //Define a custom editor for any Mutations inheriting from StrengthMutation
     [CustomEditor(typeof(StrengthMutation), true)]
     //Ensure to inherit from MutationsEditor which does all the heavy lifting 
-    public class StrengthEditor : MutationsEditor {};
+    public class StrengthEditor : MutationsEditor
+    { };
     
     /// <summary>
     /// Main Editor class for drawing Mutations
@@ -22,7 +30,12 @@ namespace Mutations.Editor
     public class MutationsEditor : UnityEditor.Editor
     {
         private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
-
+        private string[] _excludedProperties;
+        
+        protected virtual string[] ExcludedProperties => new []
+        {
+            "m_Script" , "DefaultValue", "DefaultIndex", "Values"
+        };
         public void OnEnable()
         {
             _defaultValueProp = serializedObject.FindProperty("DefaultValue");
@@ -30,14 +43,14 @@ namespace Mutations.Editor
             _valuesProp = serializedObject.FindProperty("Values");
             _nameProp = serializedObject.FindProperty("ColorPropName");
             _IDProp = serializedObject.FindProperty("ColorPropID");
+            _excludedProperties = ExcludedProperties;
         }
         public override void OnInspectorGUI()
         {
             using (var masterCheck = new EditorGUI.ChangeCheckScope())
             {
                 //Draw the editor bar the properties we want to manually control
-                DrawPropertiesExcluding(serializedObject, "m_Script", "DefaultValue", "DefaultIndex", "Values",
-                    "ColorPropName");
+                DrawPropertiesExcluding(serializedObject, _excludedProperties );
 
                 if (_nameProp!= null)
                 {
