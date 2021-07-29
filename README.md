@@ -23,14 +23,14 @@ To create an entity
 
 ### Add Mutations to your Entity
 To add a Mutation to your entity
-1. Select your your entity data
+1. Select your entity data
 2. Click `Add Mutation` in the inspector window
 3. Select which Mutation you would like to add
 4. Edit the Mutations values
 5. Save the project
 
 ### Remove Mutations to your Entity
-1. Select your your entity data
+1. Select your entity data
 2. Expand the mutation you wish to remove
 3. Click `Remove this Mutation`
 4. Save the project
@@ -52,7 +52,7 @@ _colorIndex = _colorMutator.ApplyNext(_meshRenderer, _colorIndex);
 ### Defining (Dummy) Editors for Mutations
 ```cs
 //Declare this is a custom editor for the color mutation
-[CustomEditor(typeof(typeof(ColorMutation), true)]
+[CustomEditor(typeof(ColorMutation), true)]
 //inherit from MutationsEditor which will do all the work for you
 public class ColorEditor : MutationsEditor{};
 ```
