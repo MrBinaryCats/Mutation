@@ -4,6 +4,8 @@ Mutation system for Unity which allows you to adapt your objects via data. The p
 - Color Mutation
 - Scale Mutation
 - Strength Mutation
+
+
 Mutations are saved as subassets of the entity. 
 
 The project also includes a component which uses the entity data and the mutations to mutate the gameobject, see EntityController.cs.
