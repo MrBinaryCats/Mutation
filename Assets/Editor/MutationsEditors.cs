@@ -6,16 +6,18 @@ using UnityEngine.UIElements;
 
 namespace Editor
 {
+    //Define custom editor for any Mutations which match the inheritance Mutations<Color, MeshRenderer>
     [CustomEditor(typeof(Mutations<Color, MeshRenderer>), true)]
-    public class ColorEditor : MutationsEditor
-    {
-        
-    };
+    //Ensure to inherit from MutationsEditor which does all the heavy lifting 
+    public class ColorEditor : MutationsEditor { };
+    //Define a custom editor for any Mutations inheriting from StrengthMutation
     [CustomEditor(typeof(StrengthMutation), true)]
-    public class StrengthEditor : MutationsEditor
-    {
-        
-    };
+    //Ensure to inherit from MutationsEditor which does all the heavy lifting 
+    public class StrengthEditor : MutationsEditor {};
+    
+    /// <summary>
+    /// Main Editor class for drawing Mutations
+    /// </summary>
     public class MutationsEditor : UnityEditor.Editor
     {
         private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
