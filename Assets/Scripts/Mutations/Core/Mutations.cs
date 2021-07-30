@@ -122,9 +122,16 @@ namespace Mutations.Mutations.Core
         }
 
         /// <inheritdoc />
-        public override void ResetToDefault(T1 instance)
+        public override T ResetToDefault(T1 instance)
         {
-            Apply(instance, Values.Length == 0 ? DefaultValue : Values[DefaultIndex]);
+            return Values[ResetToDefaultIndex(instance)];
+        }
+        
+        public int ResetToDefaultIndex(T1 instance)
+        {
+            var value = Values.Length == 0 ? DefaultValue : Values[DefaultIndex];
+            Apply(instance, value);
+            return Values.Length == 0 ? -1 : DefaultIndex;
         }
     }
 }

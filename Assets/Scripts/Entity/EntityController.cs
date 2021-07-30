@@ -35,26 +35,17 @@ namespace Mutations.Entity
 
             //Apply all of the default mutations to the object
             if (data.TryGetMutation(out _colorMutator))
-            {
-                _colorMutator.ResetToDefault(_meshRenderer);
-                _colorIndex = _colorMutator.DefaultIndex;
-            }
+                _colorIndex = _colorMutator.ResetToDefaultIndex(_meshRenderer);
 
             if (data.TryGetMutation<RotateMutation>(out var rotMutation))
                 rotMutation.ResetToDefault(GetComponent<Rotator>());
 
             if (data.TryGetMutation(out _sizeMutator))
-            {
-                _sizeMutator.ResetToDefault(transform);
-                _currentSize = _sizeMutator.DefaultValue;
-            }
+                _currentSize = _sizeMutator.ResetToDefault(transform);
 
             if (data.TryGetMutation(out _strMutator))
-            {
-                //this will call IncreaseStrength, setting _CurrentStrength
-                _strMutator.ResetToDefault(this);
-                _strIndex = _strMutator.DefaultIndex;
-            }
+                _strIndex = _strMutator.ResetToDefaultIndex(this);//this will call IncreaseStrength, setting _CurrentStrength
+
         }
 
         private void Update()

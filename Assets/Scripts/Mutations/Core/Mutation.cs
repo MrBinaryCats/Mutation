@@ -26,9 +26,11 @@ namespace Mutations.Mutations.Core
         ///     Resets the mutation state of the instance to the mutations default value
         /// </summary>
         /// <param name="instance">the instance of the object which will get affected by the mutation</param>
-        public virtual void ResetToDefault(T1 instance)
+        /// <returns>The new which was applied</returns>
+        public virtual T ResetToDefault(T1 instance)
         {
             Apply(instance, DefaultValue);
+            return DefaultValue;
         }
     }
 }

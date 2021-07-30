@@ -14,13 +14,7 @@ namespace Mutations.Mutations
         {
             instance.localScale = value;
         }
-
-        /// <inheritdoc />
-        public override void ResetToDefault(Transform instance)
-        {
-            Apply(instance, DefaultValue);
-        }
-
+        
         /// <inheritdoc />
         public override Vector3 ApplyNext(Transform instance, Vector3 value)
         {
