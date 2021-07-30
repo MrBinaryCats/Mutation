@@ -3,28 +3,34 @@ using UnityEngine;
 namespace Mutations.Mutations.Core
 {
     /// <summary>
-    /// Mutation which can have multiple possible states.
-    /// Each possible state is stored in an array, the elements can be applied to the object
+    ///     Mutation which can have multiple possible states.
+    ///     Each possible state is stored in an array, the elements can be applied to the object
     /// </summary>
-    /// <typeparam name="T"><inheritdoc/></typeparam>
-    /// <typeparam name="T1"><inheritdoc/></typeparam>
-    public abstract class Mutations<T, T1> : Mutation<T, T1> where T1 : UnityEngine.Object
+    /// <typeparam name="T">
+    ///     <inheritdoc />
+    /// </typeparam>
+    /// <typeparam name="T1">
+    ///     <inheritdoc />
+    /// </typeparam>
+    public abstract class Mutations<T, T1> : Mutation<T, T1> where T1 : Object
     {
         /// <summary>
-        /// The Default index of the values array which should be used for the default mutation state
+        ///     The Default index of the values array which should be used for the default mutation state
         /// </summary>
         public int DefaultIndex;
+
         /// <summary>
-        /// List of possible mutation states that can be applied to the object
+        ///     List of possible mutation states that can be applied to the object
         /// </summary>
         public T[] Values;
+
         /// <summary>
-        /// How to iterate though the mutation state when <see cref="ApplyNext"/>/<see cref="ApplyNext"/>is used
+        ///     How to iterate though the mutation state when <see cref="ApplyNext" />/<see cref="ApplyNext" />is used
         /// </summary>
         public WrapMode Wrap;
 
         /// <summary>
-        /// Iterates through the mutation states and applies the next mutation state to the given instance
+        ///     Iterates through the mutation states and applies the next mutation state to the given instance
         /// </summary>
         /// <param name="instance">The instance of the object which will get affected by the mutation</param>
         /// <param name="currentIndex">The current mutation state index</param>
@@ -65,8 +71,9 @@ namespace Mutations.Mutations.Core
             Apply(instance, Values[newIndex]);
             return currentIndex;
         }
+
         /// <summary>
-        /// Iterates through the mutation states and applies the previously mutation state to the given instance
+        ///     Iterates through the mutation states and applies the previously mutation state to the given instance
         /// </summary>
         /// <param name="instance">The instance of the object which will get affected by the mutation</param>
         /// <param name="currentIndex">The current mutation state index</param>
@@ -108,7 +115,7 @@ namespace Mutations.Mutations.Core
             return currentIndex;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void ResetToDefault(T1 instance)
         {
             if (Values.Length == 0)

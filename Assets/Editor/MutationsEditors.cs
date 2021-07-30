@@ -10,31 +10,34 @@ namespace Mutations.Editor
     [CustomEditor(typeof(Mutations<Color, MeshRenderer>), true)]
     //Ensure to inherit from MutationsEditor which does all the heavy lifting 
     public class ColorEditor : MutationsEditor
-    { 
-        protected override string[] ExcludedProperties => new []
+    {
+        protected override string[] ExcludedProperties => new[]
         {
-            "m_Script" , "DefaultValue", "DefaultIndex", "Values",
+            "m_Script", "DefaultValue", "DefaultIndex", "Values",
             "ColorPropName", "ColorPropID"
         };
-    };
+    }
+
     //Define a custom editor for any Mutations inheriting from StrengthMutation
     [CustomEditor(typeof(StrengthMutation), true)]
     //Ensure to inherit from MutationsEditor which does all the heavy lifting 
     public class StrengthEditor : MutationsEditor
-    { };
-    
+    {
+    }
+
     /// <summary>
-    /// Main Editor class for drawing Mutations
+    ///     Main Editor class for drawing Mutations
     /// </summary>
     public class MutationsEditor : UnityEditor.Editor
     {
         private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
         private string[] _excludedProperties;
-        
-        protected virtual string[] ExcludedProperties => new []
+
+        protected virtual string[] ExcludedProperties => new[]
         {
-            "m_Script" , "DefaultValue", "DefaultIndex", "Values"
+            "m_Script", "DefaultValue", "DefaultIndex", "Values"
         };
+
         public void OnEnable()
         {
             _defaultValueProp = serializedObject.FindProperty("DefaultValue");
@@ -44,15 +47,15 @@ namespace Mutations.Editor
             _IDProp = serializedObject.FindProperty("ColorPropID");
             _excludedProperties = ExcludedProperties;
         }
+
         public override void OnInspectorGUI()
         {
             using (var masterCheck = new EditorGUI.ChangeCheckScope())
             {
                 //Draw the editor bar the properties we want to manually control
-                DrawPropertiesExcluding(serializedObject, _excludedProperties );
+                DrawPropertiesExcluding(serializedObject, _excludedProperties);
 
-                if (_nameProp!= null)
-                {
+                if (_nameProp != null)
                     using (var check = new EditorGUI.ChangeCheckScope())
                     {
                         //When the user enters the property name, serialise the ID of that property
@@ -62,8 +65,6 @@ namespace Mutations.Editor
                             _IDProp.intValue = Shader.PropertyToID(_nameProp.stringValue);
                     }
 
-                }
-  
 
                 using (var check = new EditorGUI.ChangeCheckScope())
                 {
@@ -75,7 +76,7 @@ namespace Mutations.Editor
                             //We want to show the user the color, but not allow them to edit this field 
                             using (new EditorGUI.DisabledScope(true))
                             {
-                                var tmp  = EditorGUIUtility.labelWidth;
+                                var tmp = EditorGUIUtility.labelWidth;
                                 EditorGUIUtility.labelWidth = 0;
                                 EditorGUILayout.PropertyField(_defaultValueProp, new GUIContent());
                                 EditorGUIUtility.labelWidth = tmp;
@@ -96,15 +97,13 @@ namespace Mutations.Editor
                 }
 
                 if (masterCheck.changed)
-                {
                     //save the changed values
                     serializedObject.ApplyModifiedProperties();
-                }
             }
         }
 
         /// <summary>
-        /// Copies the the value of the array at the default index value, to the default value
+        ///     Copies the the value of the array at the default index value, to the default value
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         private void CopyValueToDefault()

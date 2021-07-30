@@ -1,29 +1,27 @@
-using DefaultNamespace;
 using Mutations.Mutations.Core;
 using UnityEngine;
 
 namespace Mutations.Mutations
 {
     /// <summary>
-    /// Color mutation, applies a given colour onto the meshrenders material
+    ///     Color mutation, applies a given colour onto the meshrenders material
     /// </summary>
-    public class ColorMutation :  Mutations<Color, MeshRenderer>
+    public class ColorMutation : Mutations<Color, MeshRenderer>
     {
-        [SerializeField]
-        private bool UsePropertyBlock;
-        [SerializeField]
-        private string ColorPropName;
-        [SerializeField]
-        private int ColorPropID;
+        [SerializeField] private bool UsePropertyBlock;
 
-        private MaterialPropertyBlock block = null;
+        [SerializeField] private string ColorPropName;
+
+        [SerializeField] private int ColorPropID;
+
+        private MaterialPropertyBlock block;
 
         public void OnEnable()
         {
             if (UsePropertyBlock)
                 block = new MaterialPropertyBlock();
         }
-        
+
         public override void Apply(MeshRenderer instance, in Color value)
         {
             if (UsePropertyBlock)
@@ -35,7 +33,9 @@ namespace Mutations.Mutations
                 instance.SetPropertyBlock(block);
             }
             else
+            {
                 instance.material.SetColor(ColorPropID, value);
+            }
         }
     }
 }

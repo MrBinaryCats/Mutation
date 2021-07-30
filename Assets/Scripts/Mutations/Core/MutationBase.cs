@@ -6,7 +6,4 @@ namespace Mutations.Mutations.Core
     public abstract class MutationBase : ScriptableObject
     {
     }
-
-
-
 }
