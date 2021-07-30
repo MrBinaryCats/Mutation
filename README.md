@@ -5,16 +5,21 @@ Mutation system for Unity which allows you to adapt your objects via data. The p
 - Scale Mutation
 - Strength Mutation
 
-
 Mutations are saved as subassets of the entity. 
+
+<img width="368" alt="Screenshot 2021-07-30 at 16 00 52" src="https://user-images.githubusercontent.com/85991229/127672497-cae9166c-dfc4-4929-b128-9f8ad30e8cbf.png">
 
 The project also includes a component which uses the entity data and the mutations to mutate the gameobject, see EntityController.cs.
 
+<img width="605" alt="Screenshot 2021-07-30 at 16 02 29" src="https://user-images.githubusercontent.com/85991229/127672782-9d0a0425-85b8-4db9-b2d5-600733ade5e0.png">
+
+The project also includes custom inspector editors for interacting with entities and mutations
+
 <img width="603" alt="Screenshot 2021-07-29 at 20 43 59" src="https://user-images.githubusercontent.com/85991229/127555963-feb4440c-f8a3-40d6-ba4f-8ee003bbc49b.png">
+
 
 ## Limitations
 - Currently, by design, you can only have one mutation of each type on an entity
-- To create a new mutation of inheriting from `Mutations` you must create a (dummy) custom editor (see code examples)
 - To see the created mutations in the project window, you must save the project
 
 ## Using Mutation
@@ -50,11 +55,4 @@ data.TryGetMutation<ColorMutation>(out _colorMutator)
 ...
 //Store the next index so it can be passed in and used again
 _colorIndex = _colorMutator.ApplyNext(_meshRenderer, _colorIndex);
-```
-### Defining (Dummy) Editors for Mutations
-```cs
-//Declare this is a custom editor for the color mutation
-[CustomEditor(typeof(ColorMutation), true)]
-//inherit from MutationsEditor which will do all the work for you
-public class ColorEditor : MutationsEditor{};
 ```
