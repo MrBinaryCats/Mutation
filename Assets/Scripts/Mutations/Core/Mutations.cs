@@ -124,14 +124,29 @@ namespace Mutations.Mutations.Core
         /// <inheritdoc />
         public override T ResetToDefault(T1 instance)
         {
-            return Values[ResetToDefaultIndex(instance)];
+            var index = ResetToDefaultIndex(instance);
+            return GetValueAtIndex(index);
         }
-        
+        /// <summary>
+        /// Reset the value to the value of the array element at the default index 
+        /// </summary>
+        /// <param name="instance">The instance of the object which will get affected by the mutation</param>
+        /// <returns>If the array is not empty, it will return the default index, else it will apply -1</returns>
         public int ResetToDefaultIndex(T1 instance)
         {
             var value = Values.Length == 0 ? DefaultValue : Values[DefaultIndex];
             Apply(instance, value);
             return Values.Length == 0 ? -1 : DefaultIndex;
+        }
+
+        /// <summary>
+        /// Gets the value at the given index
+        /// </summary>
+        /// <param name="index">index of which you want to get the value of</param>
+        /// <returns>the value of the the mutation state with given index</returns>
+        public T GetValueAtIndex(int index)
+        {
+            return index == -1? DefaultValue : Values[index];
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Mutations.Entity
             if (_strMutator)
             {
                 _strIndex = _strMutator.ApplyNext(this, _strIndex);
-                Debug.Log($"{gameObject.name}: New Weapon Weapon {_strMutator.Values[_strIndex]}");
+                Debug.Log($"{gameObject.name}: New Weapon Weapon {_strMutator.GetValueAtIndex(_strIndex)}");
             }
             Debug.Log($"{gameObject.name}: Level up! New Strength: {_currentStrength}");
 
