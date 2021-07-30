@@ -6,36 +6,18 @@ using UnityEngine;
 
 namespace Mutations.Editor
 {
-    //Define custom editor for any Mutations which match the inheritance Mutations<Color, MeshRenderer>
-    [CustomEditor(typeof(Mutations<Color, MeshRenderer>), true)]
-    //Ensure to inherit from MutationsEditor which does all the heavy lifting 
-    public class ColorEditor : MutationsEditor
-    {
-        protected override string[] ExcludedProperties => new[]
-        {
-            "m_Script", "DefaultValue", "DefaultIndex", "Values",
-            "ColorPropName", "ColorPropID"
-        };
-    }
-
-    //Define a custom editor for any Mutations inheriting from StrengthMutation
-    [CustomEditor(typeof(StrengthMutation), true)]
-    //Ensure to inherit from MutationsEditor which does all the heavy lifting 
-    public class StrengthEditor : MutationsEditor
-    {
-    }
-
     /// <summary>
     ///     Main Editor class for drawing Mutations
     /// </summary>
+    [CustomEditor(typeof(Mutations<,>), true)]
     public class MutationsEditor : UnityEditor.Editor
     {
         private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
-        private string[] _excludedProperties;
 
-        protected virtual string[] ExcludedProperties => new[]
+        private string[] ExcludedProperties =
         {
-            "m_Script", "DefaultValue", "DefaultIndex", "Values"
+            "m_Script", "DefaultValue", "DefaultIndex", "Values",
+            "ColorPropName", "ColorPropID"
         };
 
         public void OnEnable()
@@ -45,7 +27,6 @@ namespace Mutations.Editor
             _valuesProp = serializedObject.FindProperty("Values");
             _nameProp = serializedObject.FindProperty("ColorPropName");
             _IDProp = serializedObject.FindProperty("ColorPropID");
-            _excludedProperties = ExcludedProperties;
         }
 
         public override void OnInspectorGUI()
@@ -53,7 +34,7 @@ namespace Mutations.Editor
             using (var masterCheck = new EditorGUI.ChangeCheckScope())
             {
                 //Draw the editor bar the properties we want to manually control
-                DrawPropertiesExcluding(serializedObject, _excludedProperties);
+                DrawPropertiesExcluding(serializedObject, ExcludedProperties);
 
                 if (_nameProp != null)
                     using (var check = new EditorGUI.ChangeCheckScope())
