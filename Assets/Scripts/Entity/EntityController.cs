@@ -16,7 +16,7 @@ namespace Mutations.Entity
         private ColorMutation _colorMutator;
         private Vector3 _currentSize;
 
-        private int _CurrentStrength;
+        private int _currentStrength;
 
         private MeshRenderer _meshRenderer;
 
@@ -25,6 +25,9 @@ namespace Mutations.Entity
 
         private int _strIndex;
         private StrengthMutation _strMutator;
+        
+        private float _lvlUpCounter = 3;
+
 
         private void Start()
         {
@@ -56,35 +59,53 @@ namespace Mutations.Entity
 
         private void Update()
         {
-            //every second apply the next color mutation to the object
-            _colorCounter -= Time.deltaTime;
-            if (_colorCounter <= 0)
+            if (_colorMutator)
             {
-                _colorCounter = 1;
-                //Store the resulting index so it can be passed in again
-                _colorIndex = _colorMutator.ApplyNext(_meshRenderer, _colorIndex);
+                //every second apply the next color mutation to the object
+                _colorCounter -= Time.deltaTime;
+                if (_colorCounter <= 0)
+                {
+                    _colorCounter = 1;
+                    //Store the resulting index so it can be passed in again
+                    _colorIndex = _colorMutator.ApplyNext(_meshRenderer, _colorIndex);
+                }
             }
 
-            //every 5 second apply the next scale mutation to the object
-            _sizeCounter -= Time.deltaTime;
-            if (_sizeCounter <= 0)
+            if (_sizeMutator)
             {
-                _sizeCounter = 5;
-                //Store the resulting size so it can be passed in again
-                _currentSize = _sizeMutator.ApplyNext(transform, _currentSize);
+                //every 5 second apply the next scale mutation to the object
+                _sizeCounter -= Time.deltaTime;
+                if (_sizeCounter <= 0)
+                {
+                    _sizeCounter = 5;
+                    //Store the resulting size so it can be passed in again
+                    _currentSize = _sizeMutator.ApplyNext(transform, _currentSize);
+                }
+            }
+
+            _lvlUpCounter -= Time.deltaTime;
+            if (_lvlUpCounter <= 0)
+            {
+                //Every 3 seconds level up
+                _lvlUpCounter = 3;
                 LevelUp();
             }
         }
 
         private void LevelUp()
         {
-            _strIndex = _strMutator.ApplyNext(this, _strIndex);
-            Debug.Log($"Level up! New Strength: {_CurrentStrength}, Weapon {_strMutator.Values[_strIndex]}");
+            Debug.Log($"{gameObject.name}: Level up! New Strength: {_currentStrength}");
+            if (_strMutator)
+            {
+                _strIndex = _strMutator.ApplyNext(this, _strIndex);
+                Debug.Log($"{gameObject.name}: New Weapon Weapon {_strMutator.Values[_strIndex]}");
+
+            }
         }
 
         public void IncreaseStrength(int value)
         {
-            _CurrentStrength = data.strength + value;
+            _currentStrength = data.strength + value;
         }
     }
 }

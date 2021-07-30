@@ -68,7 +68,10 @@ namespace Mutations.Mutations.Core
                     break;
             }
 
-            Apply(instance, Values[newIndex]);
+            if (newIndex < 0 || newIndex >= Values.Length)
+                Apply(instance, DefaultValue);
+            else
+                Apply(instance, Values[newIndex]);
             return currentIndex;
         }
 
@@ -111,20 +114,17 @@ namespace Mutations.Mutations.Core
                     break;
             }
 
-            Apply(instance, Values[newIndex]);
+            if (newIndex < 0 || newIndex >= Values.Length)
+                Apply(instance, DefaultValue);
+            else
+                Apply(instance, Values[newIndex]);
             return currentIndex;
         }
 
         /// <inheritdoc />
         public override void ResetToDefault(T1 instance)
         {
-            if (Values.Length == 0)
-            {
-                Debug.LogWarning($"{instance.name} - Mutation, {name}, has no list of values");
-                return;
-            }
-
-            Apply(instance, Values[DefaultIndex]);
+            Apply(instance, Values.Length == 0 ? DefaultValue : Values[DefaultIndex]);
         }
     }
 }
