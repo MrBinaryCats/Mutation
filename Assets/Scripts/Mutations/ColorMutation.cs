@@ -1,3 +1,4 @@
+using System;
 using Mutations.Mutations.Core;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Mutations.Mutations
     {
         [SerializeField] private bool UsePropertyBlock;
 
-        [SerializeField] private string ColorPropName;
+        [WarnIfEmpty,Delayed,SerializeField] private string ColorPropName;
 
         [SerializeField] private int ColorPropID;
 
@@ -38,4 +39,6 @@ namespace Mutations.Mutations
             }
         }
     }
+
+
 }

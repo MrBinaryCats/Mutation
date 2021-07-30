@@ -60,7 +60,7 @@ namespace Mutations.Editor
                     {
                         //When the user enters the property name, serialise the ID of that property
                         //Maybe not a good idea to do this at time of serialisation
-                        EditorGUILayout.DelayedTextField(_nameProp);
+                        EditorGUILayout.PropertyField(_nameProp);
                         if (check.changed)
                             _IDProp.intValue = Shader.PropertyToID(_nameProp.stringValue);
                     }
