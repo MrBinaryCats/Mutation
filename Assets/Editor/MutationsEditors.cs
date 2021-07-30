@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace;
 using Mutations.Mutations;
 using Mutations.Mutations.Core;
 using UnityEditor;
@@ -116,6 +115,8 @@ namespace Mutations.Editor
             switch (_defaultValueProp.propertyType)
             {
                 case SerializedPropertyType.Integer:
+                case SerializedPropertyType.LayerMask:
+                case SerializedPropertyType.Character:
                     _defaultValueProp.intValue = _valuesProp.arraySize == 0
                         ? 0
                         : _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).intValue;
@@ -218,11 +219,8 @@ namespace Mutations.Editor
                 default:
                 case SerializedPropertyType.Gradient:
                 case SerializedPropertyType.FixedBufferSize:
-                case SerializedPropertyType.Character:
-                case SerializedPropertyType.LayerMask:
                 case SerializedPropertyType.Generic:
                 case SerializedPropertyType.ManagedReference:
-
                     throw new ArgumentOutOfRangeException();
             }
         }
