@@ -18,7 +18,7 @@ namespace Mutations.Mutations
         /// <inheritdoc />
         public override Vector3 ApplyNext(Transform instance, Vector3 value)
         {
-            var next = value + Step;
+            var next = value + step;
             Apply(instance, next);
             return next;
         }
@@ -26,7 +26,7 @@ namespace Mutations.Mutations
         /// <inheritdoc />
         public override Vector3 ApplyPrevious(Transform instance, Vector3 value)
         {
-            var next = value - Step;
+            var next = value - step;
             Apply(instance, next);
             return next;
         }

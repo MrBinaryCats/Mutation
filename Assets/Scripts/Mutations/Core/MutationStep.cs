@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mutations.Mutations.Core
 {
@@ -17,8 +18,12 @@ namespace Mutations.Mutations.Core
         /// <summary>
         ///     The amount to increment/decrement the current mutation state by
         /// </summary>
-        public T Step;
-
+        [SerializeField] protected T step;
+        
+        /// <summary>
+        ///     The amount to increment/decrement the current mutation state by
+        /// </summary>
+        public T Step => step;
         /// <summary>
         ///     Increments the current current value, by the step, and applies it to the instance
         /// </summary>

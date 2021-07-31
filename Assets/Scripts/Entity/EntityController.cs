@@ -85,12 +85,15 @@ namespace Mutations.Entity
 
         private void LevelUp()
         {
-            if (_strMutator)
+            if (_strMutator && _strIndex < _strMutator.GetValuesCount()-1)
             {
                 _strIndex = _strMutator.ApplyNext(this, _strIndex);
-                Debug.Log($"{gameObject.name}: New Weapon Weapon {_strMutator.GetValueAtIndex(_strIndex)}");
+                Debug.Log($"{gameObject.name}: Level up! New Strength: {_currentStrength}, New Weapon Weapon {_strMutator.GetValueAtIndex(_strIndex)}");
             }
-            Debug.Log($"{gameObject.name}: Level up! New Strength: {_currentStrength}");
+            else
+            {
+                Debug.Log($"{gameObject.name}: Level up!");
+            }
 
         }
 

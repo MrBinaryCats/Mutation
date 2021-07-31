@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mutations.Mutations.Core
 {
@@ -17,18 +18,21 @@ namespace Mutations.Mutations.Core
         /// <summary>
         ///     The Default index of the values array which should be used for the default mutation state
         /// </summary>
-        public int DefaultIndex;
+        [SerializeField] protected int defaultIndex;
 
         /// <summary>
         ///     List of possible mutation states that can be applied to the object
         /// </summary>
-        public T[] Values;
+        [SerializeField] protected T[] values;
 
         /// <summary>
         ///     How to iterate though the mutation state when <see cref="ApplyNext" />/<see cref="ApplyNext" />is used
         /// </summary>
-        public WrapMode Wrap;
-
+        [SerializeField] protected WrapMode wrap;
+        /// <summary>
+        ///     How to iterate though the mutation state when <see cref="ApplyNext" />/<see cref="ApplyNext" />is used
+        /// </summary>
+        public WrapMode Wrap => wrap;
         /// <summary>
         ///     Iterates through the mutation states and applies the next mutation state to the given instance
         /// </summary>
@@ -38,7 +42,7 @@ namespace Mutations.Mutations.Core
         public int ApplyNext(T1 instance, int currentIndex)
         {
             var newIndex = currentIndex;
-            switch (Wrap)
+            switch (wrap)
             {
                 case WrapMode.Once:
                     if (currentIndex == int.MinValue)
@@ -48,11 +52,11 @@ namespace Mutations.Mutations.Core
                     }
 
                     newIndex = ++currentIndex;
-                    if (currentIndex >= Values.Length)
+                    if (currentIndex >= values.Length)
                         return int.MinValue;
                     break;
                 case WrapMode.Loop:
-                    if (currentIndex >= Values.Length - 1)
+                    if (currentIndex >= values.Length - 1)
                         currentIndex = 0;
                     else
                         currentIndex++;
@@ -60,18 +64,18 @@ namespace Mutations.Mutations.Core
                     break;
                 case WrapMode.PingPong:
                     currentIndex++;
-                    newIndex = Mathf.RoundToInt(Mathf.PingPong(currentIndex, Values.Length - 1));
+                    newIndex = Mathf.RoundToInt(Mathf.PingPong(currentIndex, values.Length - 1));
                     break;
                 case WrapMode.Default:
                 case WrapMode.ClampForever:
-                    newIndex = currentIndex = Mathf.Min(currentIndex + 1, Values.Length - 1);
+                    newIndex = currentIndex = Mathf.Min(currentIndex + 1, values.Length - 1);
                     break;
             }
 
-            if (newIndex < 0 || newIndex >= Values.Length)
-                Apply(instance, DefaultValue);
+            if (newIndex < 0 || newIndex >= values.Length)
+                Apply(instance, defaultValue);
             else
-                Apply(instance, Values[newIndex]);
+                Apply(instance, values[newIndex]);
             return currentIndex;
         }
 
@@ -84,7 +88,7 @@ namespace Mutations.Mutations.Core
         public int ApplyPrevious(T1 instance, int currentIndex)
         {
             var newIndex = currentIndex;
-            switch (Wrap)
+            switch (wrap)
             {
                 case WrapMode.Once:
                     if (currentIndex == int.MinValue)
@@ -99,14 +103,14 @@ namespace Mutations.Mutations.Core
                     break;
                 case WrapMode.Loop:
                     if (currentIndex == 0)
-                        currentIndex = Values.Length - 1;
+                        currentIndex = values.Length - 1;
                     else
                         currentIndex--;
                     newIndex = currentIndex;
                     break;
                 case WrapMode.PingPong:
                     currentIndex--;
-                    newIndex = Mathf.RoundToInt(Mathf.PingPong(currentIndex - 1, Values.Length - 1));
+                    newIndex = Mathf.RoundToInt(Mathf.PingPong(currentIndex - 1, values.Length - 1));
                     break;
                 case WrapMode.Default:
                 case WrapMode.ClampForever:
@@ -114,10 +118,10 @@ namespace Mutations.Mutations.Core
                     break;
             }
 
-            if (newIndex < 0 || newIndex >= Values.Length)
-                Apply(instance, DefaultValue);
+            if (newIndex < 0 || newIndex >= values.Length)
+                Apply(instance, defaultValue);
             else
-                Apply(instance, Values[newIndex]);
+                Apply(instance, values[newIndex]);
             return currentIndex;
         }
 
@@ -134,9 +138,9 @@ namespace Mutations.Mutations.Core
         /// <returns>If the array is not empty, it will return the default index, else it will apply -1</returns>
         public int ResetToDefaultIndex(T1 instance)
         {
-            var value = Values.Length == 0 ? DefaultValue : Values[DefaultIndex];
+            var value = values.Length == 0 ? defaultValue : values[defaultIndex];
             Apply(instance, value);
-            return Values.Length == 0 ? -1 : DefaultIndex;
+            return values.Length == 0 ? -1 : defaultIndex;
         }
 
         /// <summary>
@@ -146,7 +150,16 @@ namespace Mutations.Mutations.Core
         /// <returns>the value of the the mutation state with given index</returns>
         public T GetValueAtIndex(int index)
         {
-            return index == -1? DefaultValue : Values[index];
+            return index == -1? defaultValue : values[index];
+        }
+
+        /// <summary>
+        /// Gets the number of mutation states for this mutation
+        /// </summary>
+        /// <returns>The length of the values array</returns>
+        public int GetValuesCount()
+        {
+            return values.Length;
         }
     }
 }

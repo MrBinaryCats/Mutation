@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mutations.Mutations.Core
 {
@@ -13,7 +14,9 @@ namespace Mutations.Mutations.Core
         /// <summary>
         ///     The default value the mutation state should have
         /// </summary>
-        public T DefaultValue;
+        [SerializeField] protected T defaultValue;
+
+        public T DefaultValue => defaultValue;
 
         /// <summary>
         ///     Applies a new mutation value to the object
@@ -29,8 +32,8 @@ namespace Mutations.Mutations.Core
         /// <returns>The new which was applied</returns>
         public virtual T ResetToDefault(T1 instance)
         {
-            Apply(instance, DefaultValue);
-            return DefaultValue;
+            Apply(instance, defaultValue);
+            return defaultValue;
         }
     }
 }

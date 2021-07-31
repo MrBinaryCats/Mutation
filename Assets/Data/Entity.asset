@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9750f2435c4543a5b7a28c8164ca452, type: 3}
   m_Name: Strength Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: 0
-  DefaultIndex: 0
-  Values: 0000000003000000
-  Wrap: 0
+  defaultValue: 0
+  defaultIndex: 0
+  values: 000000000100000003000000
+  wrap: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90db5de3f40a41d9be5c4edd29685b28, type: 3}
   m_Name: Rotate Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: 1
+  defaultValue: 1
   Speed: 10
 --- !u!114 &6399008420070597160
 MonoBehaviour:
@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6804d37920aa4e1d8651fe5d0d39ae59, type: 3}
   m_Name: Scale Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: {x: 1, y: 2, z: 3}
-  Step: {x: 3, y: 2, z: 1}
+  defaultValue: {x: 1, y: 2, z: 3}
+  step: {x: 3, y: 2, z: 1}
 --- !u!114 &6777986963404666145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,13 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54eedbc5475d4fb2bf4044d088d71a0a, type: 3}
   m_Name: Color Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: {r: 0.8891473, g: 0.46186364, b: 0.9150943, a: 0}
-  DefaultIndex: 0
-  Values:
+  defaultValue: {r: 0.8891473, g: 0.46186364, b: 0.9150943, a: 0}
+  defaultIndex: 0
+  values:
   - {r: 0.8891473, g: 0.46186364, b: 0.9150943, a: 0}
   - {r: 0, g: 0.4931837, b: 0.7075472, a: 0}
   - {r: 0.75, g: 1, b: 0.832548, a: 0}
-  Wrap: 4
+  wrap: 4
   UsePropertyBlock: 0
   ColorPropName: _Color
   ColorPropID: 15

@@ -14,19 +14,19 @@ namespace Mutations.Editor
     {
         private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
 
-        private string[] ExcludedProperties =
+        private readonly string[] _excludedProperties =
         {
-            "m_Script", "DefaultValue", "DefaultIndex", "Values",
-            "ColorPropName", "ColorPropID"
+            "m_Script", "defaultValue", "defaultIndex", "values",
+            "colorPropName", "colorPropID"
         };
 
         public void OnEnable()
         {
-            _defaultValueProp = serializedObject.FindProperty("DefaultValue");
-            _defaultIndexProp = serializedObject.FindProperty("DefaultIndex");
-            _valuesProp = serializedObject.FindProperty("Values");
-            _nameProp = serializedObject.FindProperty("ColorPropName");
-            _IDProp = serializedObject.FindProperty("ColorPropID");
+            _defaultValueProp = serializedObject.FindProperty("defaultValue");
+            _defaultIndexProp = serializedObject.FindProperty("defaultIndex");
+            _valuesProp = serializedObject.FindProperty("values");
+            _nameProp = serializedObject.FindProperty("colorPropName");
+            _IDProp = serializedObject.FindProperty("colorPropID");
         }
 
         public override void OnInspectorGUI()
@@ -34,7 +34,7 @@ namespace Mutations.Editor
             using (var masterCheck = new EditorGUI.ChangeCheckScope())
             {
                 //Draw the editor bar the properties we want to manually control
-                DrawPropertiesExcluding(serializedObject, ExcludedProperties);
+                DrawPropertiesExcluding(serializedObject, _excludedProperties);
 
                 if (_nameProp != null)
                     using (var check = new EditorGUI.ChangeCheckScope())

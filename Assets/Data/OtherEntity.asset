@@ -30,10 +30,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9750f2435c4543a5b7a28c8164ca452, type: 3}
   m_Name: Strength Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: 0
-  DefaultIndex: 0
-  Values: 0000000002000000
-  Wrap: 0
+  defaultValue: 2
+  defaultIndex: 0
+  values: 
+  wrap: 0
 --- !u!114 &7025889755616883988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54eedbc5475d4fb2bf4044d088d71a0a, type: 3}
   m_Name: Color Mutation
   m_EditorClassIdentifier: 
-  DefaultValue: {r: 1, g: 0.9535115, b: 0.3726415, a: 0}
-  DefaultIndex: 0
-  Values: []
-  Wrap: 0
+  defaultValue: {r: 1, g: 0.9535115, b: 0.3726415, a: 0}
+  defaultIndex: 0
+  values: []
+  wrap: 0
   UsePropertyBlock: 0
   ColorPropName: _Color
   ColorPropID: 15
