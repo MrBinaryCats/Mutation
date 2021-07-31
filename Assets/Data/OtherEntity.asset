@@ -15,8 +15,8 @@ MonoBehaviour:
   mutations:
   - {fileID: 7025889755616883988}
   - {fileID: 1642603767018168403}
-  EntityName: Olivia
-  HitPoints: 10
+  entityName: Olivia
+  hitPoints: 10
   strength: 5
 --- !u!114 &1642603767018168403
 MonoBehaviour:

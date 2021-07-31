@@ -99,7 +99,7 @@ namespace Mutations.Entity
 
         public void IncreaseStrength(int value)
         {
-            _currentStrength = data.strength + value;
+            _currentStrength = data.Strength + value;
         }
     }
 }

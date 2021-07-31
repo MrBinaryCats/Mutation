@@ -33,8 +33,8 @@ MonoBehaviour:
   - {fileID: 3404054933806014024}
   - {fileID: 6399008420070597160}
   - {fileID: -6286911483015681666}
-  EntityName: Bob
-  HitPoints: 10
+  entityName: Bob
+  hitPoints: 10
   strength: 3
 --- !u!114 &3404054933806014024
 MonoBehaviour:

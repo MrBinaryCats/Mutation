@@ -10,10 +10,15 @@ namespace Mutations.Entity
     {
         [HideInInspector] [SerializeField] protected MutationBase[] mutations;
 
-        public string EntityName;
-        public int HitPoints;
-        public int strength;
+        [SerializeField] protected string entityName;
+        [SerializeField] protected int hitPoints;
+        [SerializeField] protected int strength;
 
+        //public, readonly, accessors for the data
+        public string EntityName => entityName;
+        public int HitPoints => hitPoints;
+        public int Strength => strength;
+        
         /// <summary>
         /// Gets the mutation for a given index
         /// </summary>
