@@ -1,5 +1,4 @@
 using System;
-using Mutations.Mutations;
 using Mutations.Mutations.Core;
 using UnityEditor;
 using UnityEngine;
@@ -12,13 +11,13 @@ namespace Mutations.Editor
     [CustomEditor(typeof(Mutations<,>), true)]
     public class MutationsEditor : UnityEditor.Editor
     {
-        private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
-
         private readonly string[] _excludedProperties =
         {
             "m_Script", "defaultValue", "defaultIndex", "values",
             "colorPropName", "colorPropID"
         };
+
+        private SerializedProperty _defaultValueProp, _defaultIndexProp, _valuesProp, _nameProp, _IDProp;
 
         public void OnEnable()
         {
@@ -55,12 +54,14 @@ namespace Mutations.Editor
                         if (_valuesProp.arraySize > 0)
                         {
                             EditorGUILayout.PropertyField(_defaultIndexProp);
-                            label = string.Empty;//we don't want a label when we show both fields 
+                            label = string.Empty; //we don't want a label when we show both fields 
                         }
-                        
+
                         //We want to show the user the color, but not allow them to edit this field 
                         using (new EditorGUI.DisabledScope(_valuesProp.arraySize > 0))
+                        {
                             EditorGUILayout.PropertyField(_defaultValueProp, new GUIContent(label));
+                        }
                     }
 
                     //draw the array of values
@@ -88,7 +89,6 @@ namespace Mutations.Editor
         private void CopyValueToDefault()
         {
             if (_valuesProp.arraySize > 0)
-            {
                 //Because the class is generic there is no way of knowing which data you want to copy across
                 //we do know that the array type and the default value type is the same
                 //check the SerializedPropertyType and use that to determin what field should be copied over
@@ -97,64 +97,84 @@ namespace Mutations.Editor
                     case SerializedPropertyType.Integer:
                     case SerializedPropertyType.LayerMask:
                     case SerializedPropertyType.Character:
-                        _defaultValueProp.intValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).intValue;
+                        _defaultValueProp.intValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).intValue;
                         break;
                     case SerializedPropertyType.Boolean:
-                        _defaultValueProp.boolValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boolValue;
+                        _defaultValueProp.boolValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boolValue;
                         break;
                     case SerializedPropertyType.Float:
-                        _defaultValueProp.floatValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).floatValue;
+                        _defaultValueProp.floatValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).floatValue;
                         break;
                     case SerializedPropertyType.String:
-                        _defaultValueProp.stringValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).stringValue;
+                        _defaultValueProp.stringValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).stringValue;
                         break;
                     case SerializedPropertyType.Color:
-                        _defaultValueProp.colorValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).colorValue;
+                        _defaultValueProp.colorValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).colorValue;
                         break;
                     case SerializedPropertyType.ObjectReference:
-                        _defaultValueProp.objectReferenceValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).objectReferenceValue;
+                        _defaultValueProp.objectReferenceValue = _valuesProp
+                            .GetArrayElementAtIndex(_defaultIndexProp.intValue).objectReferenceValue;
                         break;
                     case SerializedPropertyType.Enum:
-                        _defaultValueProp.intValue =  _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).intValue;
+                        _defaultValueProp.intValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).intValue;
                         break;
                     case SerializedPropertyType.Vector2:
-                        _defaultValueProp.vector2Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector2Value;
+                        _defaultValueProp.vector2Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue)
+                            .vector2Value;
                         break;
                     case SerializedPropertyType.Vector3:
-                        _defaultValueProp.vector3Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector3Value;
+                        _defaultValueProp.vector3Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue)
+                            .vector3Value;
                         break;
                     case SerializedPropertyType.Vector4:
-                        _defaultValueProp.vector4Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector4Value;
+                        _defaultValueProp.vector4Value = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue)
+                            .vector4Value;
                         break;
                     case SerializedPropertyType.Rect:
-                        _defaultValueProp.rectValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).rectValue;
+                        _defaultValueProp.rectValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).rectValue;
                         break;
                     case SerializedPropertyType.ArraySize:
-                        _defaultValueProp.arraySize = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).arraySize;
+                        _defaultValueProp.arraySize =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).arraySize;
                         break;
                     case SerializedPropertyType.AnimationCurve:
-                        _defaultValueProp.animationCurveValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).animationCurveValue;
+                        _defaultValueProp.animationCurveValue = _valuesProp
+                            .GetArrayElementAtIndex(_defaultIndexProp.intValue).animationCurveValue;
                         break;
                     case SerializedPropertyType.Bounds:
-                        _defaultValueProp.boundsValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boundsValue;
+                        _defaultValueProp.boundsValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boundsValue;
                         break;
                     case SerializedPropertyType.Quaternion:
-                        _defaultValueProp.quaternionValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).quaternionValue;
+                        _defaultValueProp.quaternionValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).quaternionValue;
                         break;
                     case SerializedPropertyType.ExposedReference:
-                        _defaultValueProp.exposedReferenceValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).exposedReferenceValue;
+                        _defaultValueProp.exposedReferenceValue = _valuesProp
+                            .GetArrayElementAtIndex(_defaultIndexProp.intValue).exposedReferenceValue;
                         break;
                     case SerializedPropertyType.Vector2Int:
-                        _defaultValueProp.vector2IntValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector2IntValue;
+                        _defaultValueProp.vector2IntValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector2IntValue;
                         break;
                     case SerializedPropertyType.Vector3Int:
-                        _defaultValueProp.vector3IntValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector3IntValue;
+                        _defaultValueProp.vector3IntValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).vector3IntValue;
                         break;
                     case SerializedPropertyType.RectInt:
-                        _defaultValueProp.rectIntValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).rectIntValue;
+                        _defaultValueProp.rectIntValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue)
+                            .rectIntValue;
                         break;
                     case SerializedPropertyType.BoundsInt:
-                        _defaultValueProp.boundsIntValue = _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boundsIntValue;
+                        _defaultValueProp.boundsIntValue =
+                            _valuesProp.GetArrayElementAtIndex(_defaultIndexProp.intValue).boundsIntValue;
                         break;
                     default:
                     case SerializedPropertyType.Gradient:
@@ -163,7 +183,6 @@ namespace Mutations.Editor
                     case SerializedPropertyType.ManagedReference:
                         throw new ArgumentOutOfRangeException();
                 }
-            }
         }
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Mutations.Mutations.Core
 {
@@ -29,10 +28,12 @@ namespace Mutations.Mutations.Core
         ///     How to iterate though the mutation state when <see cref="ApplyNext" />/<see cref="ApplyNext" />is used
         /// </summary>
         [SerializeField] protected WrapMode wrap;
+
         /// <summary>
         ///     How to iterate though the mutation state when <see cref="ApplyNext" />/<see cref="ApplyNext" />is used
         /// </summary>
         public WrapMode Wrap => wrap;
+
         /// <summary>
         ///     Iterates through the mutation states and applies the next mutation state to the given instance
         /// </summary>
@@ -131,8 +132,9 @@ namespace Mutations.Mutations.Core
             var index = ResetToDefaultIndex(instance);
             return GetValueAtIndex(index);
         }
+
         /// <summary>
-        /// Reset the value to the value of the array element at the default index 
+        ///     Reset the value to the value of the array element at the default index
         /// </summary>
         /// <param name="instance">The instance of the object which will get affected by the mutation</param>
         /// <returns>If the array is not empty, it will return the default index, else it will apply -1</returns>
@@ -144,19 +146,22 @@ namespace Mutations.Mutations.Core
         }
 
         /// <summary>
-        /// Gets the value at the given index
+        ///     Gets the value at the given index
         /// </summary>
         /// <param name="index">index of which you want to get the value of</param>
         /// <returns>the value of the the mutation state with given index</returns>
         public T GetValueAtIndex(int index)
         {
-            return index == -1? defaultValue : values[index];
+            return index == -1 ? defaultValue : values[index];
         }
 
         /// <summary>
-        /// Gets the number of mutation states for this mutation
+        ///     Gets the number of mutation states for this mutation
         /// </summary>
         /// <returns>The length of the values array</returns>
-        public int GetValuesCount() => values.Length;
+        public int GetValuesCount()
+        {
+            return values.Length;
+        }
     }
 }

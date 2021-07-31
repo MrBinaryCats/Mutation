@@ -18,6 +18,8 @@ namespace Mutations.Entity
 
         private int _currentStrength;
 
+        private float _lvlUpCounter = 3;
+
         private MeshRenderer _meshRenderer;
 
         private float _sizeCounter = 5;
@@ -25,8 +27,6 @@ namespace Mutations.Entity
 
         private int _strIndex;
         private StrengthMutation _strMutator;
-        
-        private float _lvlUpCounter = 3;
 
 
         private void Start()
@@ -44,8 +44,8 @@ namespace Mutations.Entity
                 _currentSize = _sizeMutator.ResetToDefault(transform);
 
             if (data.TryGetMutation(out _strMutator))
-                _strIndex = _strMutator.ResetToDefaultIndex(this);//this will call IncreaseStrength, setting _CurrentStrength
-
+                _strIndex = _strMutator
+                    .ResetToDefaultIndex(this); //this will call IncreaseStrength, setting _CurrentStrength
         }
 
         private void Update()
@@ -85,16 +85,16 @@ namespace Mutations.Entity
 
         private void LevelUp()
         {
-            if (_strMutator && _strIndex < _strMutator.GetValuesCount()-1)
+            if (_strMutator && _strIndex < _strMutator.GetValuesCount() - 1)
             {
                 _strIndex = _strMutator.ApplyNext(this, _strIndex);
-                Debug.Log($"{gameObject.name}: Level up! New Strength: {_currentStrength}, New Weapon Weapon {_strMutator.GetValueAtIndex(_strIndex)}");
+                Debug.Log(
+                    $"{gameObject.name}: Level up! New Strength: {_currentStrength}, New Weapon Weapon {_strMutator.GetValueAtIndex(_strIndex)}");
             }
             else
             {
                 Debug.Log($"{gameObject.name}: Level up!");
             }
-
         }
 
         public void IncreaseStrength(int value)
