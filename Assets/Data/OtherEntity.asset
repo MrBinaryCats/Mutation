@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d755499fe284309b5eaa08a5c1ad487, type: 3}
   m_Name: OtherEntity
   m_EditorClassIdentifier: 
-  Mutations:
+  mutations:
   - {fileID: 7025889755616883988}
   - {fileID: 1642603767018168403}
   EntityName: Olivia

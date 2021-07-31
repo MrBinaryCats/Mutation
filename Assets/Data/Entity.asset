@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d755499fe284309b5eaa08a5c1ad487, type: 3}
   m_Name: Entity
   m_EditorClassIdentifier: 
-  Mutations:
+  mutations:
   - {fileID: 6777986963404666145}
   - {fileID: 3404054933806014024}
   - {fileID: 6399008420070597160}

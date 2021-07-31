@@ -19,7 +19,7 @@ namespace Mutations.Editor
 
         private void OnEnable()
         {
-            _mutationsProp = serializedObject.FindProperty("Mutations");
+            _mutationsProp = serializedObject.FindProperty("mutations");
             CreateTypeMenu();
             CreateEditors();
         }
@@ -53,8 +53,8 @@ namespace Mutations.Editor
         /// </summary>
         private void CreateEditors()
         {
-            _editors = new UnityEditor.Editor[target.Mutations.Length];
-            for (var i = 0; i < _editors.Length; i++) _editors[i] = CreateEditor(target.Mutations[i]);
+            _editors = new UnityEditor.Editor[target.GetMutationCount()];
+            for (var i = 0; i < _editors.Length; i++) _editors[i] = CreateEditor(target.GetMutationAtIndex(i));
         }
 
         public override void OnInspectorGUI()
