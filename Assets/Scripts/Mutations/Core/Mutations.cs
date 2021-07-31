@@ -157,9 +157,6 @@ namespace Mutations.Mutations.Core
         /// Gets the number of mutation states for this mutation
         /// </summary>
         /// <returns>The length of the values array</returns>
-        public int GetValuesCount()
-        {
-            return values.Length;
-        }
+        public int GetValuesCount() => values.Length;
     }
 }
