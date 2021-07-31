@@ -27,6 +27,12 @@ namespace Mutations.Entity
         /// <returns>The number of mutations</returns>
         public int GetMutationCount() => mutations.Length;
 
+        /// <summary>
+        /// Tries to get the mutation of a given type from the entity
+        /// </summary>
+        /// <param name="mutation">Output: The returned mutation</param>
+        /// <typeparam name="T">The type of mutation to retrieve</typeparam>
+        /// <returns>If the mutation exists for the entity</returns>
         public bool TryGetMutation<T>(out T mutation) where T : MutationBase
         {
             foreach (var mutationBase in mutations)
@@ -40,6 +46,11 @@ namespace Mutations.Entity
             return false;
         }
 
+        /// <summary>
+        /// Gets if the Entity has a given type of mutation
+        /// </summary>
+        /// <param name="type">The type of the mutation to check</param>
+        /// <returns>If the entity has the mutation</returns>
         public bool HasMutationType(Type type)
         {
             foreach (var mutationBase in mutations)
