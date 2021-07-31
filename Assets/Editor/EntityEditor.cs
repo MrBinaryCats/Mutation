@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Mutations.Entity;
+using Mutations.Extensions;
 using Mutations.Mutations.Core;
 using UnityEditor;
 using UnityEngine;
@@ -44,7 +45,7 @@ namespace Mutations.Editor
                 .GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(MutationBase)) && !t.IsAbstract);
             foreach (var type in subclassTypes)
-                if (!target.HasMutationType(type))
+                if (!target.Mutations.HasMutationType(type))
                     _typeMenu.AddItem(new GUIContent(type.Name), false, AddNewMutation, type);
         }
 
@@ -53,8 +54,8 @@ namespace Mutations.Editor
         /// </summary>
         private void CreateEditors()
         {
-            _editors = new UnityEditor.Editor[target.GetMutationCount()];
-            for (var i = 0; i < _editors.Length; i++) _editors[i] = CreateEditor(target.GetMutationAtIndex(i));
+            _editors = new UnityEditor.Editor[target.Mutations.GetMutationCount()];
+            for (var i = 0; i < _editors.Length; i++) _editors[i] = CreateEditor(target.Mutations.GetMutationAtIndex(i));
         }
 
         public override void OnInspectorGUI()

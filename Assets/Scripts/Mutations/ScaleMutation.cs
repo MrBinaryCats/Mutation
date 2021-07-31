@@ -1,7 +1,7 @@
 using Mutations.Mutations.Core;
 using UnityEngine;
 
-namespace Mutations.Mutations
+namespace Mutations
 {
     /// <summary>
     ///     Mutation which applies a scale to the gameobject

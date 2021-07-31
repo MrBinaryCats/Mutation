@@ -1,7 +1,7 @@
 using Mutations.Mutations.Core;
 using UnityEngine;
 
-namespace Mutations.Mutations
+namespace Mutations
 {
     /// <summary>
     ///     Color mutation, applies a given colour onto the meshrenders material

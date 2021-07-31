@@ -1,7 +1,7 @@
 using Mutations.GenericComponents;
 using Mutations.Mutations.Core;
 
-namespace Mutations.Mutations
+namespace Mutations
 {
     /// <summary>
     ///     Mutation which tells the Rotator if it should be rotating and how fast it should rotate

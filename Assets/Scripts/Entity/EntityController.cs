@@ -1,5 +1,5 @@
 using Mutations.GenericComponents;
-using Mutations.Mutations;
+using Mutations.Extensions;
 using UnityEngine;
 
 namespace Mutations.Entity
@@ -34,16 +34,16 @@ namespace Mutations.Entity
             _meshRenderer = GetComponent<MeshRenderer>();
 
             //Apply all of the default mutations to the object
-            if (data.TryGetMutation(out _colorMutator))
+            if (data.Mutations.TryGetMutation(out _colorMutator))
                 _colorIndex = _colorMutator.ResetToDefaultIndex(_meshRenderer);
 
-            if (data.TryGetMutation<RotateMutation>(out var rotMutation))
+            if (data.Mutations.TryGetMutation<RotateMutation>(out var rotMutation))
                 rotMutation.ResetToDefault(GetComponent<Rotator>());
 
-            if (data.TryGetMutation(out _sizeMutator))
+            if (data.Mutations.TryGetMutation(out _sizeMutator))
                 _currentSize = _sizeMutator.ResetToDefault(transform);
 
-            if (data.TryGetMutation(out _strMutator))
+            if (data.Mutations.TryGetMutation(out _strMutator))
                 _strIndex = _strMutator
                     .ResetToDefaultIndex(this); //this will call IncreaseStrength, setting _CurrentStrength
         }
